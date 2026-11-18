@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Hipertensão Arterial — Fisiologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="image" href="img/cover-heart.webp" fetchpriority="high">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#081426;
+  --navy2:#0d1f3c;
+  --red:#FF4757;
+  --teal:#00BCD4;
+  --gold:#F5A623;
+  --green:#2ECC71;
+  --txt:#EAF2FF;
+  --mut:rgba(234,242,255,.72);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Montserrat',sans-serif;background:var(--navy);color:var(--txt)}
+
+.slide{
+  position:absolute;inset:0;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  padding:48px 70px;
+  opacity:0;pointer-events:none;
+  transition:opacity .5s ease;
+  overflow:hidden;
+  background:
+    radial-gradient(1100px 600px at 85% -10%, rgba(255,71,87,.12), transparent 60%),
+    radial-gradient(900px 600px at -10% 110%, rgba(0,188,212,.10), transparent 60%),
+    linear-gradient(160deg, var(--navy) 0%, var(--navy2) 100%);
+}
+.slide.active{opacity:1;pointer-events:auto}
+
+/* ===== tipografia ===== */
+h1{font-size:clamp(34px,4.6vw,64px);font-weight:900;line-height:1.12;text-align:center}
+h2{font-size:clamp(26px,3.3vw,46px);font-weight:900;line-height:1.15;text-align:center}
+.kicker{
+  font-size:clamp(11px,1.1vw,15px);font-weight:800;letter-spacing:4px;
+  text-transform:uppercase;color:var(--teal);margin-bottom:14px;text-align:center;
+}
+.kicker.red{color:var(--red)}
+.kicker.gold{color:var(--gold)}
+.kicker.green{color:var(--green)}
+.sub{font-size:clamp(14px,1.6vw,21px);font-weight:600;color:var(--mut);text-align:center;line-height:1.5}
+
+/* ===== entradas ===== */
+.slide.active .in1{animation:up .7s cubic-bezier(.22,1,.36,1) both}
+.slide.active .in2{animation:up .7s cubic-bezier(.22,1,.36,1) .15s both}
+.slide.active .in3{animation:up .7s cubic-bezier(.22,1,.36,1) .3s both}
+.slide.active .in4{animation:up .7s cubic-bezier(.22,1,.36,1) .45s both}
+@keyframes up{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:translateY(0)}}
+
+/* ===== componentes ===== */
+.frame{display:flex;justify-content:center}
+.frame img{
+  max-width:84vw;max-height:56vh;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,.14);
+  box-shadow:0 22px 60px rgba(0,0,0,.5);
+  object-fit:contain;
+}
+.cards{display:flex;gap:clamp(12px,1.8vw,26px);flex-wrap:wrap;justify-content:center;margin-top:26px}
+.card{
+  background:rgba(255,255,255,.055);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:18px;
+  padding:clamp(16px,2vw,28px) clamp(16px,1.8vw,26px);
+  width:clamp(200px,21vw,300px);
+  backdrop-filter:blur(6px);
+}
+.card .ic{font-size:clamp(26px,2.6vw,40px);margin-bottom:10px}
+.card h3{font-size:clamp(15px,1.5vw,20px);font-weight:800;margin-bottom:8px}
+.card p{font-size:clamp(12px,1.2vw,16px);font-weight:500;color:var(--mut);line-height:1.5}
+.card.red{border-color:rgba(255,71,87,.45);box-shadow:0 0 34px rgba(255,71,87,.08) inset}
+.card.teal{border-color:rgba(0,188,212,.45)}
+.card.gold{border-color:rgba(245,166,35,.45)}
+.card.green{border-color:rgba(46,204,113,.45)}
+
+.pill{
+  display:inline-block;
+  background:rgba(0,188,212,.12);
+  border:1px solid rgba(0,188,212,.5);
+  color:var(--teal);
+  font-weight:800;font-size:clamp(12px,1.2vw,16px);
+  padding:8px 22px;border-radius:999px;
+}
+.formula{
+  font-size:clamp(28px,4vw,58px);font-weight:900;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(255,255,255,.14);
+  padding:clamp(18px,2.4vw,34px) clamp(28px,4vw,60px);
+  border-radius:22px;letter-spacing:1px;
+}
+.formula b{color:var(--red)}
+.formula i{color:var(--teal);font-style:normal}
+.formula u{color:var(--gold);text-decoration:none}
+
+/* fluxo (cascata SRAA / barorreflexo) */
+.flow{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:18px}
+.flow-row{display:flex;align-items:center;gap:clamp(8px,1.2vw,18px);flex-wrap:wrap;justify-content:center}
+.node{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.16);
+  border-radius:14px;
+  padding:clamp(9px,1.1vw,15px) clamp(13px,1.6vw,22px);
+  font-size:clamp(12px,1.25vw,17px);font-weight:700;
+  text-align:center;line-height:1.35;
+}
+.node small{display:block;font-weight:500;color:var(--mut);font-size:clamp(10px,1vw,13px)}
+.node.red{border-color:rgba(255,71,87,.55);background:rgba(255,71,87,.10)}
+.node.teal{border-color:rgba(0,188,212,.55);background:rgba(0,188,212,.10)}
+.node.gold{border-color:rgba(245,166,35,.55);background:rgba(245,166,35,.10)}
+.node.green{border-color:rgba(46,204,113,.55);background:rgba(46,204,113,.10)}
+.arrow-d{font-size:clamp(16px,1.6vw,22px);color:var(--gold);margin:4px 0;animation:pulseA 1.8s ease infinite}
+.arrow-r{font-size:clamp(16px,1.6vw,22px);color:var(--gold);animation:pulseA 1.8s ease infinite}
+@keyframes pulseA{0%,100%{opacity:.5;transform:translateY(0)}50%{opacity:1;transform:translateY(3px)}}
+
+/* tabela */
+table{border-collapse:collapse;margin-top:22px;font-size:clamp(12px,1.35vw,18px)}
+th,td{padding:clamp(8px,1.1vw,14px) clamp(14px,2vw,30px);text-align:center;border:1px solid rgba(255,255,255,.14)}
+th{background:rgba(0,188,212,.14);font-weight:800;letter-spacing:.5px}
+td b{font-weight:800}
+tr.hl td{background:rgba(255,71,87,.12)}
+
+/* número gigante */
+.big-stat{font-size:clamp(60px,9vw,130px);font-weight:900;color:var(--red);line-height:1}
+.big-stat small{font-size:clamp(18px,2.2vw,30px);color:var(--txt);font-weight:800}
+
+/* batimento ecg */
+.ecg{position:absolute;bottom:26px;left:0;right:0;height:46px;opacity:.35;pointer-events:none}
+.ecg svg{width:200%;height:100%;animation:ecgMove 9s linear infinite}
+@keyframes ecgMove{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* pulso no título da capa */
+.heartbeat{display:inline-block;animation:beat 1.4s ease infinite;transform-origin:center}
+@keyframes beat{0%,100%{transform:scale(1)}14%{transform:scale(1.12)}28%{transform:scale(1)}42%{transform:scale(1.08)}56%{transform:scale(1)}}
+
+#progress{
+  position:fixed;bottom:0;left:0;height:5px;
+  background:linear-gradient(90deg,var(--teal),var(--red));
+  transition:width .35s ease;z-index:100;
+}
+#counter{
+  position:fixed;bottom:14px;right:22px;
+  font-size:14px;font-weight:700;color:rgba(234,242,255,.4);z-index:100;
+}
+
+@media(max-width:768px){
+  .slide{padding:26px 18px}
+  .frame img{max-width:94vw;max-height:46vh}
+  .card{width:86vw}
+  th,td{padding:7px 10px}
+}
+@media print{
+  html,body{overflow:visible!important;height:auto!important}
+  .slide{position:relative!important;opacity:1!important;animation:none!important;
+    page-break-after:always;height:100vh;width:100vw}
+  #progress,#counter,.ecg{display:none}
+  @page{size:A4 landscape;margin:0}
+  body{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<div id="progress" style="width:0%"></div>
+<div id="counter">1 / 24</div>
+
+<!-- ========== 1. CAPA ========== -->
+<div class="slide active">
+  <p class="kicker in1">Fisiologia Humana &bull; Seminário &bull; Grupo 1</p>
+  <h1 class="in2"><span class="heartbeat">&#x2764;&#xFE0F;</span> Hipertensão Arterial</h1>
+  <p class="sub in3" style="max-width:860px;margin-top:16px">Mecanismos fisiológicos da regulação da pressão arterial<br>e alterações na hipertensão</p>
+  <div class="frame in4" style="margin-top:26px"><img fetchpriority="high" src="img/cover-heart.webp" alt="Coração humano" style="max-height:44vh"></div>
+  <p class="sub in4" style="margin-top:18px;font-size:clamp(12px,1.2vw,16px)">UNINASSAU &bull; Nutrição &bull; 2026.2</p>
+  <div class="ecg"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 L80,30 L95,30 L103,12 L111,48 L119,30 L200,30 L280,30 L295,30 L303,12 L311,48 L319,30 L400,30 L480,30 L495,30 L503,12 L511,48 L519,30 L600,30 L680,30 L695,30 L703,12 L711,48 L719,30 L800,30 L880,30 L895,30 L903,12 L911,48 L919,30 L1000,30 L1080,30 L1095,30 L1103,12 L1111,48 L1119,30 L1200,30" fill="none" stroke="#FF4757" stroke-width="2.5"/></svg></div>
+</div>
+
+<!-- ========== 2. ROTEIRO ========== -->
+<div class="slide">
+  <p class="kicker in1">Roteiro da apresentação</p>
+  <h2 class="in2">O caminho de hoje</h2>
+  <div class="cards in3">
+    <div class="card teal"><div class="ic">&#x1F4CF;</div><h3>1. Fundamentos</h3><p>O que é pressão arterial e o que a determina</p></div>
+    <div class="card teal"><div class="ic">&#x26A1;</div><h3>2. Controle rápido</h3><p>Sistema nervoso: barorreceptores e quimiorreceptores</p></div>
+    <div class="card gold"><div class="ic">&#x1F9EA;</div><h3>3. Controle sustentado</h3><p>Hormônios, SRAA e o papel central dos rins</p></div>
+    <div class="card red"><div class="ic">&#x1F4C8;</div><h3>4. Hipertensão</h3><p>O que se altera quando a regulação falha</p></div>
+    <div class="card green"><div class="ic">&#x1F957;</div><h3>5. Prevenção</h3><p>Consequências, nutrição e tratamento</p></div>
+  </div>
+</div>
+
+<!-- ========== 3. O QUE É PA ========== -->
+<div class="slide">
+  <p class="kicker in1">Fundamentos</p>
+  <h2 class="in2">O que é pressão arterial?</h2>
+  <p class="sub in2" style="margin-top:12px;max-width:820px">É a força que o sangue exerce contra a parede das artérias —<br>a energia que garante a perfusão de todos os tecidos.</p>
+  <div class="formula in3" style="margin-top:28px">PA = <i>DC</i> &times; <u>RPT</u></div>
+  <div class="cards in4">
+    <div class="card teal"><h3><i style="font-style:normal;color:var(--teal)">DC</i> — Débito Cardíaco</h3><p>Volume que o coração bombeia por minuto<br>DC = frequência cardíaca &times; volume sistólico (&#8776; 5 L/min)</p></div>
+    <div class="card gold"><h3><u style="text-decoration:none;color:var(--gold)">RPT</u> — Resistência Periférica Total</h3><p>Dificuldade que o sangue encontra nas arteríolas — controlada pelo calibre dos vasos</p></div>
+    <div class="card"><h3>Valores de referência</h3><p>Sistólica &#8776; 120 mmHg (contração)<br>Diastólica &#8776; 80 mmHg (relaxamento)</p></div>
+  </div>
+</div>
+
+<!-- ========== 4. DETERMINANTES ========== -->
+<div class="slide">
+  <p class="kicker in1">Fundamentos</p>
+  <h2 class="in2">Quem mexe nesses dois fatores?</h2>
+  <div class="flow in3">
+    <div class="flow-row">
+      <div class="node teal">&#x2B06;&#xFE0F; Frequência cardíaca<small>simpático acelera, parassimpático freia</small></div>
+      <div class="node teal">&#x2B06;&#xFE0F; Volume sistólico<small>força de contração + retorno venoso</small></div>
+      <div class="node teal">&#x2B06;&#xFE0F; Volemia<small>mais líquido no sistema = mais pressão</small></div>
+    </div>
+    <div class="arrow-d">&#x2B07;</div>
+    <div class="flow-row"><div class="node" style="font-size:clamp(14px,1.5vw,20px)">Débito Cardíaco</div></div>
+  </div>
+  <div class="flow in4" style="margin-top:26px">
+    <div class="flow-row">
+      <div class="node gold">Vasoconstrição<small>raio menor = resistência muito maior</small></div>
+      <div class="node gold">Vasodilatação<small>raio maior = pressão cai</small></div>
+      <div class="node gold">Viscosidade do sangue<small>fator secundário</small></div>
+    </div>
+    <div class="arrow-d">&#x2B07;</div>
+    <div class="flow-row"><div class="node" style="font-size:clamp(14px,1.5vw,20px)">Resistência Periférica Total</div></div>
+  </div>
+  <p class="sub in4" style="margin-top:20px;max-width:780px">Detalhe importante: a resistência varia com a <b style="color:var(--gold)">4ª potência do raio</b> do vaso —<br>uma pequena vasoconstrição muda muito a pressão. <span style="opacity:.7">(Guyton &amp; Hall, cap. 14)</span></p>
+</div>
+
+<!-- ========== 5. BARORRECEPTORES ========== -->
+<div class="slide">
+  <p class="kicker in1">Controle rápido — segundos</p>
+  <h2 class="in2">Como o corpo "mede" a pressão?</h2>
+  <p class="sub in2" style="margin-top:12px;max-width:860px">Sensores de estiramento na parede das grandes artérias — os <b style="color:var(--teal)">barorreceptores</b> —<br>informam o cérebro a cada batimento.</p>
+  <div class="cards in3">
+    <div class="card teal"><div class="ic">&#x1F4CD;</div><h3>Seio carotídeo</h3><p>Nas carótidas internas — sinal segue pelo nervo glossofaríngeo (IX par)</p></div>
+    <div class="card teal"><div class="ic">&#x1F4CD;</div><h3>Arco aórtico</h3><p>Na saída do coração — sinal segue pelo nervo vago (X par)</p></div>
+    <div class="card"><div class="ic">&#x1F9E0;</div><h3>Centro vasomotor</h3><p>No bulbo (tronco encefálico): recebe os sinais e ajusta o sistema autônomo</p></div>
+  </div>
+  <p class="sub in4" style="margin-top:22px;max-width:800px">Funcionam na faixa de 60 a 180 mmHg e são o principal mecanismo<br>de correção <b style="color:var(--teal)">instantânea</b> da pressão. <span style="opacity:.7">(Guyton &amp; Hall, cap. 18)</span></p>
+</div>
+
+<!-- ========== 6. REFLEXO BARORRECEPTOR ========== -->
+<div class="slide">
+  <p class="kicker in1">Controle rápido — segundos</p>
+  <h2 class="in2">O reflexo barorreceptor em ação</h2>
+  <p class="sub in2" style="margin-top:8px">Exemplo: você levanta da cama rápido e a pressão cai.</p>
+  <div class="flow in3">
+    <div class="flow-row">
+      <div class="node red">&#x2B07;&#xFE0F; Pressão cai<small>menos estiramento da parede arterial</small></div>
+      <div class="arrow-r">&#x27A1;</div>
+      <div class="node">Barorreceptores disparam menos</div>
+      <div class="arrow-r">&#x27A1;</div>
+      <div class="node">Centro vasomotor percebe<small>bulbo</small></div>
+    </div>
+    <div class="arrow-d">&#x2B07;</div>
+    <div class="flow-row">
+      <div class="node teal">&#x2B06;&#xFE0F; Simpático ativado<small>&#x2B07;&#xFE0F; parassimpático</small></div>
+      <div class="arrow-r">&#x27A1;</div>
+      <div class="node teal">FC &#x2B06;&#xFE0F; &bull; contração &#x2B06;&#xFE0F; &bull; vasoconstrição</div>
+      <div class="arrow-r">&#x27A1;</div>
+      <div class="node green">&#x2705; Pressão normaliza<small>em segundos</small></div>
+    </div>
+  </div>
+  <p class="sub in4" style="margin-top:24px;max-width:820px"><b style="color:var(--gold)">Limitação:</b> em 1 a 2 dias os barorreceptores se <b>adaptam</b> ao novo nível de pressão —<br>por isso não controlam a pressão a longo prazo. Essa é a deixa para os rins.</p>
+</div>
+
+<!-- ========== 7. QUIMIORRECEPTORES / ISQUEMIA ========== -->
+<div class="slide">
+  <p class="kicker in1">Controle rápido — emergências</p>
+  <h2 class="in2">Os alarmes de emergência</h2>
+  <div class="cards in3">
+    <div class="card gold"><div class="ic">&#x1F6A8;</div><h3>Quimiorreceptores</h3><p>Corpos carotídeos e aórticos detectam queda de O&#8322; e excesso de CO&#8322;. Entram em ação quando a pressão cai abaixo de &#8776; 80 mmHg.</p></div>
+    <div class="card red"><div class="ic">&#x2757;</div><h3>Resposta isquêmica do SNC</h3><p>Quando a pressão despenca abaixo de &#8776; 60 mmHg e o próprio cérebro sofre com a falta de fluxo: descarga simpática máxima — o último recurso do organismo.</p></div>
+    <div class="card teal"><div class="ic">&#x1F504;</div><h3>Outros reflexos</h3><p>Receptores cardiopulmonares de baixa pressão nos átrios e artérias pulmonares ajudam a ajustar a volemia.</p></div>
+  </div>
+  <p class="sub in4" style="margin-top:22px;opacity:.85">Todos esses mecanismos nervosos agem em <b style="color:var(--teal)">segundos</b> — mas nenhum deles segura a pressão por semanas.</p>
+</div>
+
+<!-- ========== 8. HORMONAL ========== -->
+<div class="slide">
+  <p class="kicker gold in1">Controle intermediário — minutos a horas</p>
+  <h2 class="in2">A camada hormonal</h2>
+  <div class="cards in3">
+    <div class="card gold"><div class="ic">&#x26A1;</div><h3>Adrenalina e noradrenalina</h3><p>Medula adrenal: reforçam o simpático — FC e vasoconstrição aumentam</p></div>
+    <div class="card gold"><div class="ic">&#x1F4A7;</div><h3>ADH (vasopressina)</h3><p>Hipófise posterior: retém água nos rins e, em altas doses, contrai vasos</p></div>
+    <div class="card teal"><div class="ic">&#x1FAC0;</div><h3>Peptídeo natriurético atrial</h3><p>O contrarregulador: átrios distendidos liberam PNA, que elimina sódio e água — a pressão desce</p></div>
+    <div class="card"><div class="ic">&#x1F9EB;</div><h3>Endotélio</h3><p>Óxido nítrico (NO) dilata; endotelina contrai — o equilíbrio fino, vaso a vaso</p></div>
+  </div>
+</div>
+
+<!-- ========== 9. RIM — LONGO PRAZO ========== -->
+<div class="slide">
+  <p class="kicker gold in1">Controle a longo prazo — dias a anos</p>
+  <h2 class="in2">O verdadeiro regulador: o rim</h2>
+  <div class="frame in3" style="margin-top:18px"><img loading="lazy" decoding="async" src="img/kidneys.webp" alt="Rins humanos" style="max-height:44vh"></div>
+  <p class="sub in4" style="margin-top:20px;max-width:900px"><b style="color:var(--gold)">Natriurese de pressão</b> (Guyton, cap. 19): quando a pressão sobe, o rim elimina mais sódio e água — a volemia cai e a pressão volta ao ponto de equilíbrio.<br>É o único mecanismo com <b style="color:var(--teal)">ganho infinito</b>: não se adapta, não desiste — define o nível da pressão ao longo da vida.</p>
+</div>
+
+<!-- ========== 10. SRAA ========== -->
+<div class="slide">
+  <p class="kicker gold in1">Controle a longo prazo</p>
+  <h2 class="in2">Sistema Renina-Angiotensina-Aldosterona</h2>
+  <div class="flow in3">
+    <div class="flow-row">
+      <div class="node red">&#x2B07;&#xFE0F; Pressão / &#x2B07;&#xFE0F; sódio chegando ao rim</div>
+      <div class="arrow-r">&#x27A1;</div>
+      <div class="node gold">Renina<small>células justaglomerulares</small></div>
+      <div class="arrow-r">&#x27A1;</div>
+      <div class="node">Angiotensinogênio &#8594; Angiotensina I<small>produzido no fígado</small></div>
+    </div>
+    <div class="arrow-d">&#x2B07; &nbsp;ECA (pulmões)</div>
+    <div class="flow-row">
+      <div class="node red" style="font-size:clamp(13px,1.4vw,19px)">Angiotensina II</div>
+    </div>
+    <div class="arrow-d">&#x2B07;</div>
+    <div class="flow-row">
+      <div class="node gold">Vasoconstrição potente<small>RPT sobe em minutos</small></div>
+      <div class="node gold">Aldosterona<small>córtex adrenal: retém Na&#8314; e água</small></div>
+      <div class="node gold">Sede + ADH<small>volemia sobe</small></div>
+    </div>
+    <div class="arrow-d">&#x2B07;</div>
+    <div class="flow-row"><div class="node green">&#x2705; Pressão restaurada e sustentada</div></div>
+  </div>
+</div>
+
+<!-- ========== 11. LINHA DO TEMPO ========== -->
+<div class="slide">
+  <p class="kicker in1">Síntese da regulação</p>
+  <h2 class="in2">Três camadas, três velocidades</h2>
+  <div class="cards in3">
+    <div class="card teal"><div class="ic">&#x23F1;&#xFE0F;</div><h3>Segundos</h3><p><b>Sistema nervoso</b><br>Barorreceptores, quimiorreceptores, resposta isquêmica do SNC</p></div>
+    <div class="card gold"><div class="ic">&#x23F3;</div><h3>Minutos a horas</h3><p><b>Hormônios</b><br>Catecolaminas, angiotensina II, ADH, PNA</p></div>
+    <div class="card red"><div class="ic">&#x1F4C5;</div><h3>Dias a anos</h3><p><b>Rim e volemia</b><br>Natriurese de pressão + SRAA + aldosterona</p></div>
+  </div>
+  <p class="sub in4" style="margin-top:24px;max-width:860px">Quando essas três camadas trabalham em harmonia, a pressão fica estável.<br><b style="color:var(--red)">Quando a camada renal se desregula, nasce a hipertensão.</b></p>
+</div>
+
+<!-- ========== 12. O QUE É HIPERTENSÃO ========== -->
+<div class="slide">
+  <p class="kicker red in1">Parte 2 — quando a regulação falha</p>
+  <h2 class="in2">O que é hipertensão arterial?</h2>
+  <p class="sub in2" style="margin-top:10px;max-width:860px">Doença crônica em que a pressão permanece elevada de forma <b style="color:var(--red)">sustentada</b> —<br>o sistema passa a defender um ponto de equilíbrio mais alto.</p>
+  <table class="in3">
+    <tr><th>Classificação</th><th>Sistólica (mmHg)</th><th>Diastólica (mmHg)</th></tr>
+    <tr><td>Ótima</td><td>&lt; 120</td><td>&lt; 80</td></tr>
+    <tr><td>Pré-hipertensão</td><td>121–139</td><td>81–89</td></tr>
+    <tr class="hl"><td><b>Hipertensão estágio 1</b></td><td>140–159</td><td>90–99</td></tr>
+    <tr class="hl"><td><b>Hipertensão estágio 2</b></td><td>160–179</td><td>100–109</td></tr>
+    <tr class="hl"><td><b>Hipertensão estágio 3</b></td><td>&#8805; 180</td><td>&#8805; 110</td></tr>
+  </table>
+  <p class="sub in4" style="margin-top:18px;font-size:clamp(11px,1.1vw,15px);opacity:.75">Diretrizes Brasileiras de Hipertensão Arterial — SBC, 2020</p>
+</div>
+
+<!-- ========== 13. EPIDEMIOLOGIA ========== -->
+<div class="slide">
+  <p class="kicker red in1">Dimensão do problema</p>
+  <div class="in2" style="text-align:center"><span class="big-stat">1 em 4</span></div>
+  <p class="sub in2" style="margin-top:10px;font-size:clamp(18px,2.2vw,30px);font-weight:800;color:var(--txt)">adultos brasileiros é hipertenso</p>
+  <div class="cards in3">
+    <div class="card red"><div class="ic">&#x1F910;</div><h3>Doença silenciosa</h3><p>Na maioria dos casos não há sintomas — muitos descobrem só na complicação</p></div>
+    <div class="card red"><div class="ic">&#x1F4C8;</div><h3>Aumenta com a idade</h3><p>Mais da metade das pessoas acima de 60 anos convive com hipertensão</p></div>
+    <div class="card red"><div class="ic">&#x1F30E;</div><h3>Principal fator de risco</h3><p>Para AVC, infarto e doença renal crônica no mundo</p></div>
+  </div>
+</div>
+
+<!-- ========== 14. HIPERTENSÃO PRIMÁRIA ========== -->
+<div class="slide">
+  <p class="kicker red in1">Classificação por causa</p>
+  <h2 class="in2">Hipertensão primária (essencial)</h2>
+  <p class="sub in2" style="margin-top:10px"><span class="pill" style="border-color:rgba(255,71,87,.5);color:var(--red);background:rgba(255,71,87,.1)">90 a 95% dos casos</span>&nbsp;&nbsp;Sem uma causa única — soma de fatores ao longo dos anos:</p>
+  <div class="cards in3">
+    <div class="card"><div class="ic">&#x1F9C2;</div><h3>Excesso de sal</h3><p>Mais sódio = mais volume retido</p></div>
+    <div class="card"><div class="ic">&#x2696;&#xFE0F;</div><h3>Obesidade</h3><p>Hiperativa o simpático e o SRAA</p></div>
+    <div class="card"><div class="ic">&#x1F6CB;&#xFE0F;</div><h3>Sedentarismo</h3><p>Vasos menos complacentes</p></div>
+    <div class="card"><div class="ic">&#x1F9EC;</div><h3>Genética + idade</h3><p>História familiar e envelhecimento arterial</p></div>
+    <div class="card"><div class="ic">&#x1F37A;</div><h3>Álcool e tabaco</h3><p>Lesão endotelial e ativação simpática</p></div>
+    <div class="card"><div class="ic">&#x1F630;</div><h3>Estresse crônico</h3><p>Descarga simpática repetida</p></div>
+  </div>
+</div>
+
+<!-- ========== 15. FISIOPATOLOGIA ========== -->
+<div class="slide">
+  <p class="kicker red in1">Fisiopatologia</p>
+  <h2 class="in2">O que se altera na hipertensão?</h2>
+  <div class="cards in3">
+    <div class="card red"><div class="ic">&#x1F9E0;</div><h3>Barorreceptores recalibrados</h3><p>Adaptam-se ao nível alto e passam a defendê-lo como "normal"</p></div>
+    <div class="card red"><div class="ic">&#x1F525;</div><h3>Simpático hiperativo</h3><p>Vasoconstrição e FC elevadas de forma crônica</p></div>
+    <div class="card red"><div class="ic">&#x1F9EA;</div><h3>SRAA hiperativo</h3><p>Angiotensina II e aldosterona em excesso: volume e resistência sobem</p></div>
+    <div class="card red"><div class="ic">&#x1FA78;</div><h3>Disfunção endotelial</h3><p>Menos óxido nítrico, mais endotelina — o vaso perde a capacidade de relaxar</p></div>
+    <div class="card red"><div class="ic">&#x1F4C9;</div><h3>Curva renal deslocada</h3><p>O rim passa a exigir pressão maior para excretar o mesmo sódio (Guyton, cap. 19)</p></div>
+    <div class="card red"><div class="ic">&#x1F9F1;</div><h3>Remodelamento vascular</h3><p>Parede espessa, lúmen estreito — a RPT sobe em definitivo</p></div>
+  </div>
+</div>
+
+<!-- ========== 16. REMODELAMENTO (IMAGEM) ========== -->
+<div class="slide">
+  <p class="kicker red in1">Fisiopatologia</p>
+  <h2 class="in2">A artéria antes e depois</h2>
+  <div class="frame in3" style="margin-top:18px"><img loading="lazy" decoding="async" src="img/artery-compare.webp" alt="Artéria normal e artéria remodelada" style="max-height:50vh"></div>
+  <p class="sub in4" style="margin-top:20px;max-width:880px">Pressão alta lesa o endotélio &#8594; a parede engrossa &#8594; o lúmen estreita &#8594; a resistência sobe &#8594; a pressão sobe ainda mais.<br><b style="color:var(--red)">Um círculo vicioso que se retroalimenta.</b></p>
+</div>
+
+<!-- ========== 17. SECUNDÁRIA ========== -->
+<div class="slide">
+  <p class="kicker red in1">Classificação por causa</p>
+  <h2 class="in2">Hipertensão secundária</h2>
+  <p class="sub in2" style="margin-top:10px"><span class="pill" style="border-color:rgba(245,166,35,.5);color:var(--gold);background:rgba(245,166,35,.1)">5 a 10% dos casos</span>&nbsp;&nbsp;Há uma causa identificável — e muitas vezes tratável:</p>
+  <div class="cards in3">
+    <div class="card gold"><div class="ic">&#x1FAC1;</div><h3>Doenças renais</h3><p>Doença renal crônica e estenose da artéria renal (hipertensão renovascular)</p></div>
+    <div class="card gold"><div class="ic">&#x1F9EA;</div><h3>Causas endócrinas</h3><p>Hiperaldosteronismo primário, feocromocitoma, Cushing, tireoide</p></div>
+    <div class="card gold"><div class="ic">&#x1F634;</div><h3>Apneia do sono</h3><p>Hipóxia repetida ativa o simpático toda noite</p></div>
+    <div class="card gold"><div class="ic">&#x1F48A;</div><h3>Fármacos</h3><p>Anticoncepcionais, corticoides, anti-inflamatórios, descongestionantes</p></div>
+  </div>
+  <p class="sub in4" style="margin-top:18px;opacity:.85">Suspeitar quando: início antes dos 30 anos, pressão resistente a tratamento ou piora súbita.</p>
+</div>
+
+<!-- ========== 18. ÓRGÃOS-ALVO ========== -->
+<div class="slide">
+  <p class="kicker red in1">Consequências</p>
+  <h2 class="in2">Lesões em órgãos-alvo</h2>
+  <div class="frame in3" style="margin-top:16px"><img loading="lazy" decoding="async" src="img/organ-damage.webp" alt="Órgãos afetados pela hipertensão" style="max-height:42vh"></div>
+  <div class="cards in4" style="margin-top:18px">
+    <div class="card red" style="width:clamp(170px,17vw,230px)"><h3>&#x2764;&#xFE0F; Coração</h3><p>Hipertrofia do VE, infarto, insuficiência cardíaca</p></div>
+    <div class="card red" style="width:clamp(170px,17vw,230px)"><h3>&#x1F9E0; Cérebro</h3><p>AVC isquêmico e hemorrágico</p></div>
+    <div class="card red" style="width:clamp(170px,17vw,230px)"><h3>&#x1FAC1; Rins</h3><p>Nefroesclerose &#8594; doença renal crônica</p></div>
+    <div class="card red" style="width:clamp(170px,17vw,230px)"><h3>&#x1F441;&#xFE0F; Retina</h3><p>Retinopatia hipertensiva</p></div>
+  </div>
+</div>
+
+<!-- ========== 19. NUTRIÇÃO ========== -->
+<div class="slide">
+  <p class="kicker green in1">O papel da Nutrição</p>
+  <h2 class="in2">O prato que baixa a pressão</h2>
+  <div class="frame in3" style="margin-top:14px"><img loading="lazy" decoding="async" src="img/dash-foods.webp" alt="Alimentos da dieta DASH" style="max-height:40vh"></div>
+  <div class="cards in4" style="margin-top:16px">
+    <div class="card green" style="width:clamp(180px,18vw,250px)"><h3>&#x1F9C2; Menos sódio</h3><p>&lt; 2 g de sódio/dia (&#8776; 5 g de sal) — cuidado com ultraprocessados</p></div>
+    <div class="card green" style="width:clamp(180px,18vw,250px)"><h3>&#x1F34C; Mais potássio</h3><p>Frutas, verduras e feijões ajudam a excretar sódio</p></div>
+    <div class="card green" style="width:clamp(180px,18vw,250px)"><h3>&#x1F957; Padrão DASH</h3><p>Pode reduzir 8 a 14 mmHg na sistólica</p></div>
+    <div class="card green" style="width:clamp(180px,18vw,250px)"><h3>&#x2696;&#xFE0F; Peso + movimento</h3><p>&#8776; 1 mmHg a menos por kg perdido; exercício aeróbico reduz 5 a 8 mmHg</p></div>
+  </div>
+</div>
+
+<!-- ========== 20. TRATAMENTO ========== -->
+<div class="slide">
+  <p class="kicker green in1">Tratamento</p>
+  <h2 class="in2">Cada fármaco ataca um mecanismo que estudamos</h2>
+  <div class="flow in3">
+    <div class="flow-row">
+      <div class="node teal">Diuréticos<small>&#x2B07;&#xFE0F; volemia — agem no rim (tiazídicos)</small></div>
+      <div class="node teal">IECA / BRA<small>bloqueiam a ECA ou o receptor da angiotensina II (enalapril / losartana)</small></div>
+    </div>
+    <div class="flow-row" style="margin-top:14px">
+      <div class="node teal">Bloqueadores de canal de cálcio<small>&#x2B07;&#xFE0F; RPT — relaxam o músculo liso vascular (anlodipino)</small></div>
+      <div class="node teal">Betabloqueadores<small>&#x2B07;&#xFE0F; DC — reduzem FC e contratilidade (atenolol)</small></div>
+    </div>
+  </div>
+  <p class="sub in4" style="margin-top:24px;max-width:860px">A base do tratamento continua sendo a <b style="color:var(--green)">mudança de estilo de vida</b> —<br>alimentação, exercício, peso, sono e manejo do estresse. O fármaco complementa, não substitui.</p>
+</div>
+
+<!-- ========== 21. CASO CLÍNICO ========== -->
+<div class="slide">
+  <p class="kicker gold in1">Dramatização — caso clínico</p>
+  <h2 class="in2">Dona Maria, 58 anos</h2>
+  <div class="cards in3">
+    <div class="card"><div class="ic">&#x1FA7A;</div><h3>Cena 1 — A consulta</h3><p>Consulta de rotina, sem queixas. Aferição: <b style="color:var(--red)">162 &times; 104 mmHg</b>, confirmada em duas medidas. IMC 31. "Mas eu não sinto nada, doutora!"</p></div>
+    <div class="card"><div class="ic">&#x1F37D;&#xFE0F;</div><h3>Cena 2 — A anamnese alimentar</h3><p>Café com pão, mortadela e queijo; almoço com caldo pronto; sardinha enlatada; refrigerante. Sal estimado: <b style="color:var(--red)">&gt; 12 g/dia</b>. Caminhada: nenhuma.</p></div>
+    <div class="card"><div class="ic">&#x1F91D;</div><h3>Cena 3 — O plano</h3><p>Encaminhamento médico + plano DASH realista, troca dos temperos prontos por ervas, caminhada 30 min 5&times;/semana, meta de 5% do peso em 6 meses.</p></div>
+  </div>
+  <p class="sub in4" style="margin-top:22px;max-width:800px">Em cena: cada integrante assume um papel — paciente, nutricionista e narrador<br>explicando a fisiologia por trás de cada decisão.</p>
+</div>
+
+<!-- ========== 22. CONCLUSÃO ========== -->
+<div class="slide">
+  <p class="kicker in1">Conclusão</p>
+  <h2 class="in2">O que levamos de hoje</h2>
+  <div class="cards in3">
+    <div class="card teal"><div class="ic">&#x2696;&#xFE0F;</div><h3>PA = DC &times; RPT</h3><p>Toda a regulação — e toda a doença — passa por esses dois fatores</p></div>
+    <div class="card teal"><div class="ic">&#x23F1;&#xFE0F;</div><h3>Três camadas de controle</h3><p>Nervosa (segundos), hormonal (horas) e renal (anos) — o rim dá a palavra final</p></div>
+    <div class="card red"><div class="ic">&#x1F4C8;</div><h3>Hipertensão é regulação quebrada</h3><p>O sistema inteiro passa a defender uma pressão mais alta — e lesa os órgãos em silêncio</p></div>
+    <div class="card green"><div class="ic">&#x1F957;</div><h3>A Nutrição age na causa</h3><p>Sódio, potássio, peso e padrão alimentar mexem exatamente nos mecanismos da doença</p></div>
+  </div>
+</div>
+
+<!-- ========== 23. REFERÊNCIAS ========== -->
+<div class="slide">
+  <p class="kicker in1">Referências</p>
+  <h2 class="in2">Bases desta apresentação</h2>
+  <div class="in3" style="max-width:900px;margin-top:26px;display:flex;flex-direction:column;gap:16px">
+    <div class="node" style="text-align:left;padding:18px 26px">HALL, J. E.; HALL, M. E. <b>Guyton &amp; Hall — Tratado de Fisiologia Médica.</b> 14. ed. Rio de Janeiro: GEN Guanabara Koogan, 2021. Capítulos 14, 18, 19 e 20.</div>
+    <div class="node" style="text-align:left;padding:18px 26px">BARROSO, W. K. S. et al. <b>Diretrizes Brasileiras de Hipertensão Arterial — 2020.</b> Arquivos Brasileiros de Cardiologia, v. 116, n. 3, 2021. Sociedade Brasileira de Cardiologia.</div>
+    <div class="node" style="text-align:left;padding:18px 26px">BRASIL. Ministério da Saúde. <b>Vigitel Brasil</b> — Vigilância de fatores de risco e proteção para doenças crônicas. Brasília, 2023.</div>
+  </div>
+</div>
+
+<!-- ========== 24. OBRIGADO ========== -->
+<div class="slide">
+  <p class="kicker in1">Fisiologia Humana &bull; Grupo 1</p>
+  <h1 class="in2"><span class="heartbeat">&#x2764;&#xFE0F;</span> Obrigado!</h1>
+  <p class="sub in3" style="margin-top:16px;font-size:clamp(16px,2vw,26px)">Cuidar da pressão é cuidar de cada batimento.<br>Perguntas?</p>
+  <p class="sub in4" style="margin-top:26px;font-size:clamp(12px,1.2vw,16px);opacity:.7">UNINASSAU &bull; Nutrição &bull; 2026.2</p>
+  <div class="ecg"><svg viewBox="0 0 1200 60" preserveAspectRatio="none"><path d="M0,30 L80,30 L95,30 L103,12 L111,48 L119,30 L200,30 L280,30 L295,30 L303,12 L311,48 L319,30 L400,30 L480,30 L495,30 L503,12 L511,48 L519,30 L600,30 L680,30 L695,30 L703,12 L711,48 L719,30 L800,30 L880,30 L895,30 L903,12 L911,48 L919,30 L1000,30 L1080,30 L1095,30 L1103,12 L1111,48 L1119,30 L1200,30" fill="none" stroke="#FF4757" stroke-width="2.5"/></svg></div>
+</div>
+
+<script>
+const slides = document.querySelectorAll('.slide');
+const total = slides.length;
+let current = 0;
+
+function goTo(n){
+  if(n < 0 || n >= total) return;
+  slides[current].classList.remove('active');
+  current = n;
+  slides[current].classList.add('active');
+  document.getElementById('progress').style.width = ((current+1)/total*100)+'%';
+  document.getElementById('counter').textContent = (current+1)+' / '+total;
+}
+
+document.addEventListener('keydown', e => {
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='Enter') goTo(current+1);
+  if(e.key==='ArrowLeft'||e.key==='Backspace') goTo(current-1);
+  if(e.key==='Home') goTo(0);
+  if(e.key==='End') goTo(total-1);
+});
+
+let touchX = 0;
+document.addEventListener('touchstart', e => { touchX = e.touches[0].clientX; });
+document.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchX;
+  if(Math.abs(dx) > 50) dx < 0 ? goTo(current+1) : goTo(current-1);
+});
+
+document.addEventListener('click', e => {
+  const w = window.innerWidth;
+  if(e.clientX > w * 0.7) goTo(current+1);
+  else if(e.clientX < w * 0.3) goTo(current-1);
+});
+
+const hash = parseInt(location.hash.replace('#',''));
+goTo(hash > 0 && hash <= total ? hash - 1 : 0);
+</script>
+</body>
+</html>
