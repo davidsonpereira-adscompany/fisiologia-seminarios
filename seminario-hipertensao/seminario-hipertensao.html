@@ -128,6 +128,8 @@ h2{font-size:clamp(26px,3.3vw,46px);font-weight:900;line-height:1.15;text-align:
   text-align:center;line-height:1.35;
 }
 .node small{display:block;font-weight:500;color:var(--mut);font-size:clamp(10px,1vw,13px)}
+.node{transition:transform .5s ease,box-shadow .5s ease,filter .5s ease}
+.node.lit{transform:scale(1.07);box-shadow:0 0 30px rgba(245,166,35,.45);filter:brightness(1.35)}
 .node.red{border-color:rgba(255,71,87,.55);background:rgba(255,71,87,.10)}
 .node.teal{border-color:rgba(0,188,212,.55);background:rgba(0,188,212,.10)}
 .node.gold{border-color:rgba(245,166,35,.55);background:rgba(245,166,35,.10)}
@@ -533,6 +535,20 @@ const slides = document.querySelectorAll('.slide');
 const total = slides.length;
 let current = 0;
 
+let flowTimer = null;
+function animateFlow(slide){
+  if(flowTimer){ clearInterval(flowTimer); flowTimer = null; }
+  document.querySelectorAll('.node.lit').forEach(n => n.classList.remove('lit'));
+  const nodes = slide.querySelectorAll('.flow .node');
+  if(!nodes.length) return;
+  let i = 0;
+  nodes[0].classList.add('lit'); i = 1;
+  flowTimer = setInterval(() => {
+    if(i < nodes.length){ nodes[i].classList.add('lit'); i++; }
+    else { nodes.forEach(n => n.classList.remove('lit')); i = 0; }
+  }, 1200);
+}
+
 function goTo(n){
   if(n < 0 || n >= total) return;
   slides[current].classList.remove('active');
@@ -540,6 +556,7 @@ function goTo(n){
   slides[current].classList.add('active');
   document.getElementById('progress').style.width = ((current+1)/total*100)+'%';
   document.getElementById('counter').textContent = (current+1)+' / '+total;
+  animateFlow(slides[current]);
 }
 
 document.addEventListener('keydown', e => {
