@@ -101,6 +101,21 @@ h2{font-size:clamp(26px,3.3vw,46px);font-weight:900;line-height:1.15;text-align:
 .formula i{color:var(--teal);font-style:normal}
 .formula u{color:var(--gold);text-decoration:none}
 
+/* caixa de analogia — "Em palavras simples" */
+.ana{
+  margin-top:20px;max-width:940px;
+  background:rgba(46,204,113,.08);
+  border:1px solid rgba(46,204,113,.4);
+  border-left:5px solid var(--green);
+  border-radius:14px;
+  padding:clamp(12px,1.4vw,18px) clamp(16px,2vw,26px);
+  font-size:clamp(13px,1.35vw,18px);font-weight:600;line-height:1.55;
+  text-align:left;color:var(--txt);
+}
+.ana b{color:var(--green)}
+/* significado de termo técnico, inline */
+.gl{font-weight:600;color:var(--teal);font-style:normal}
+
 /* fluxo (cascata SRAA / barorreflexo) */
 .flow{display:flex;flex-direction:column;align-items:center;gap:0;margin-top:18px}
 .flow-row{display:flex;align-items:center;gap:clamp(8px,1.2vw,18px);flex-wrap:wrap;justify-content:center}
@@ -188,8 +203,8 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <h2 class="in2">O caminho de hoje</h2>
   <div class="cards in3">
     <div class="card teal"><div class="ic">&#x1F4CF;</div><h3>1. Fundamentos</h3><p>O que é pressão arterial e o que a determina</p></div>
-    <div class="card teal"><div class="ic">&#x26A1;</div><h3>2. Controle rápido</h3><p>Sistema nervoso: barorreceptores e quimiorreceptores</p></div>
-    <div class="card gold"><div class="ic">&#x1F9EA;</div><h3>3. Controle sustentado</h3><p>Hormônios, SRAA e o papel central dos rins</p></div>
+    <div class="card teal"><div class="ic">&#x26A1;</div><h3>2. Controle rápido</h3><p>Sistema nervoso: os sensores de pressão e os alarmes do corpo</p></div>
+    <div class="card gold"><div class="ic">&#x1F9EA;</div><h3>3. Controle sustentado</h3><p>Hormônios, o sistema renina-angiotensina e o papel central dos rins</p></div>
     <div class="card red"><div class="ic">&#x1F4C8;</div><h3>4. Hipertensão</h3><p>O que se altera quando a regulação falha</p></div>
     <div class="card green"><div class="ic">&#x1F957;</div><h3>5. Prevenção</h3><p>Consequências, nutrição e tratamento</p></div>
   </div>
@@ -199,13 +214,14 @@ tr.hl td{background:rgba(255,71,87,.12)}
 <div class="slide">
   <p class="kicker in1">Fundamentos</p>
   <h2 class="in2">O que é pressão arterial?</h2>
-  <p class="sub in2" style="margin-top:12px;max-width:820px">É a força que o sangue exerce contra a parede das artérias —<br>a energia que garante a perfusão de todos os tecidos.</p>
-  <div class="formula in3" style="margin-top:28px">PA = <i>DC</i> &times; <u>RPT</u></div>
+  <p class="sub in2" style="margin-top:12px;max-width:860px">É a força que o sangue faz contra a parede das artérias —<br>a energia que garante a <b class="gl">perfusão</b> (chegada de sangue a todos os tecidos do corpo).</p>
+  <div class="formula in3" style="margin-top:22px">PA = <i>DC</i> &times; <u>RPT</u></div>
   <div class="cards in4">
-    <div class="card teal"><h3><i style="font-style:normal;color:var(--teal)">DC</i> — Débito Cardíaco</h3><p>Volume que o coração bombeia por minuto<br>DC = frequência cardíaca &times; volume sistólico (&#8776; 5 L/min)</p></div>
-    <div class="card gold"><h3><u style="text-decoration:none;color:var(--gold)">RPT</u> — Resistência Periférica Total</h3><p>Dificuldade que o sangue encontra nas arteríolas — controlada pelo calibre dos vasos</p></div>
-    <div class="card"><h3>Valores de referência</h3><p>Sistólica &#8776; 120 mmHg (contração)<br>Diastólica &#8776; 80 mmHg (relaxamento)</p></div>
+    <div class="card teal"><h3><i style="font-style:normal;color:var(--teal)">DC</i> — Débito Cardíaco</h3><p>Quanto sangue o coração bombeia por minuto (&#8776; 5 litros).<br>Na prática: <b>a força da bomba</b>.</p></div>
+    <div class="card gold"><h3><u style="text-decoration:none;color:var(--gold)">RPT</u> — Resistência Periférica Total</h3><p>O quanto os vasos estão apertados, dificultando a passagem do sangue.<br>Na prática: <b>o aperto dos canos</b>.</p></div>
+    <div class="card"><h3>Valores de referência</h3><p>Sistólica &#8776; 120 mmHg — quando o coração <b>aperta</b><br>Diastólica &#8776; 80 mmHg — quando o coração <b>relaxa</b></p></div>
   </div>
+  <div class="ana in4">&#x1F4A1; <b>Em palavras simples:</b> o corpo é uma casa. O coração é a bomba d'água, as artérias são os canos e o sangue é a água. Pressão arterial é a força da água empurrando a parede do cano: depende da força da bomba (DC) e do aperto dos canos (RPT).</div>
 </div>
 
 <!-- ========== 4. DETERMINANTES ========== -->
@@ -214,61 +230,61 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <h2 class="in2">Quem mexe nesses dois fatores?</h2>
   <div class="flow in3">
     <div class="flow-row">
-      <div class="node teal">&#x2B06;&#xFE0F; Frequência cardíaca<small>simpático acelera, parassimpático freia</small></div>
-      <div class="node teal">&#x2B06;&#xFE0F; Volume sistólico<small>força de contração + retorno venoso</small></div>
-      <div class="node teal">&#x2B06;&#xFE0F; Volemia<small>mais líquido no sistema = mais pressão</small></div>
+      <div class="node teal">&#x2B06;&#xFE0F; Frequência cardíaca<small>quantos batimentos por minuto — o simpático acelera, o parassimpático freia</small></div>
+      <div class="node teal">&#x2B06;&#xFE0F; Volume sistólico<small>quanto sangue sai a cada batida do coração</small></div>
+      <div class="node teal">&#x2B06;&#xFE0F; Volemia (quantidade de líquido no corpo)<small>mais líquido circulando = mais pressão</small></div>
     </div>
     <div class="arrow-d">&#x2B07;</div>
     <div class="flow-row"><div class="node" style="font-size:clamp(14px,1.5vw,20px)">Débito Cardíaco</div></div>
   </div>
   <div class="flow in4" style="margin-top:26px">
     <div class="flow-row">
-      <div class="node gold">Vasoconstrição<small>raio menor = resistência muito maior</small></div>
-      <div class="node gold">Vasodilatação<small>raio maior = pressão cai</small></div>
-      <div class="node gold">Viscosidade do sangue<small>fator secundário</small></div>
+      <div class="node gold">Vasoconstrição (vaso aperta)<small>cano mais estreito = resistência muito maior</small></div>
+      <div class="node gold">Vasodilatação (vaso relaxa e alarga)<small>cano mais largo = pressão cai</small></div>
+      <div class="node gold">Viscosidade (grossura do sangue)<small>fator secundário</small></div>
     </div>
     <div class="arrow-d">&#x2B07;</div>
     <div class="flow-row"><div class="node" style="font-size:clamp(14px,1.5vw,20px)">Resistência Periférica Total</div></div>
   </div>
-  <p class="sub in4" style="margin-top:20px;max-width:780px">Detalhe importante: a resistência varia com a <b style="color:var(--gold)">4ª potência do raio</b> do vaso —<br>uma pequena vasoconstrição muda muito a pressão. <span style="opacity:.7">(Guyton &amp; Hall, cap. 14)</span></p>
+  <div class="ana in4">&#x1F4A1; <b>Em palavras simples:</b> é como a mangueira do quintal — quando você aperta a ponta, a água sai com muito mais força. Um aperto pequeno no vaso muda muito a pressão, porque a resistência cresce com a 4ª potência do raio <span style="opacity:.7">(Guyton &amp; Hall, cap. 14)</span>.</div>
 </div>
 
 <!-- ========== 5. BARORRECEPTORES ========== -->
 <div class="slide">
   <p class="kicker in1">Controle rápido — segundos</p>
   <h2 class="in2">Como o corpo "mede" a pressão?</h2>
-  <p class="sub in2" style="margin-top:12px;max-width:860px">Sensores de estiramento na parede das grandes artérias — os <b style="color:var(--teal)">barorreceptores</b> —<br>informam o cérebro a cada batimento.</p>
+  <p class="sub in2" style="margin-top:12px;max-width:900px">Os <b style="color:var(--teal)">barorreceptores</b> <span class="gl">("baro" = pressão: sensores de pressão)</span> ficam na parede<br>das grandes artérias e avisam o cérebro a cada batimento.</p>
   <div class="cards in3">
-    <div class="card teal"><div class="ic">&#x1F4CD;</div><h3>Seio carotídeo</h3><p>Nas carótidas internas — sinal segue pelo nervo glossofaríngeo (IX par)</p></div>
-    <div class="card teal"><div class="ic">&#x1F4CD;</div><h3>Arco aórtico</h3><p>Na saída do coração — sinal segue pelo nervo vago (X par)</p></div>
-    <div class="card"><div class="ic">&#x1F9E0;</div><h3>Centro vasomotor</h3><p>No bulbo (tronco encefálico): recebe os sinais e ajusta o sistema autônomo</p></div>
+    <div class="card teal"><div class="ic">&#x1F4CD;</div><h3>Seio carotídeo</h3><p>Sensor na artéria do <b>pescoço</b> (carótida) — o aviso viaja pelo nervo glossofaríngeo (IX par)</p></div>
+    <div class="card teal"><div class="ic">&#x1F4CD;</div><h3>Arco aórtico</h3><p>Sensor na <b>saída do coração</b> (aorta) — o aviso viaja pelo nervo vago (X par)</p></div>
+    <div class="card"><div class="ic">&#x1F9E0;</div><h3>Centro vasomotor</h3><p>A <b>central de controle</b>, no bulbo (parte mais baixa do cérebro): recebe os avisos e manda a resposta</p></div>
   </div>
-  <p class="sub in4" style="margin-top:22px;max-width:800px">Funcionam na faixa de 60 a 180 mmHg e são o principal mecanismo<br>de correção <b style="color:var(--teal)">instantânea</b> da pressão. <span style="opacity:.7">(Guyton &amp; Hall, cap. 18)</span></p>
+  <div class="ana in4">&#x1F4A1; <b>Em palavras simples:</b> são como o sensor com boia da caixa d'água — medem a pressão o tempo todo e avisam a central (o cérebro) na mesma hora que algo muda. Funcionam na faixa de 60 a 180 mmHg <span style="opacity:.7">(Guyton &amp; Hall, cap. 18)</span>.</div>
 </div>
 
 <!-- ========== 6. REFLEXO BARORRECEPTOR ========== -->
 <div class="slide">
   <p class="kicker in1">Controle rápido — segundos</p>
   <h2 class="in2">O reflexo barorreceptor em ação</h2>
-  <p class="sub in2" style="margin-top:8px">Exemplo: você levanta da cama rápido e a pressão cai.</p>
+  <p class="sub in2" style="margin-top:8px;max-width:880px">Exemplo real: você levanta da cama rápido, a pressão cai e dá aquela tontura.<br>Em segundos o corpo corrige — assim:</p>
   <div class="flow in3">
     <div class="flow-row">
-      <div class="node red">&#x2B07;&#xFE0F; Pressão cai<small>menos estiramento da parede arterial</small></div>
+      <div class="node red">&#x2B07;&#xFE0F; Pressão cai<small>a parede da artéria estica menos</small></div>
       <div class="arrow-r">&#x27A1;</div>
-      <div class="node">Barorreceptores disparam menos</div>
+      <div class="node">Os sensores avisam<small>barorreceptores disparam menos</small></div>
       <div class="arrow-r">&#x27A1;</div>
-      <div class="node">Centro vasomotor percebe<small>bulbo</small></div>
+      <div class="node">A central percebe<small>centro vasomotor, no bulbo</small></div>
     </div>
     <div class="arrow-d">&#x2B07;</div>
     <div class="flow-row">
-      <div class="node teal">&#x2B06;&#xFE0F; Simpático ativado<small>&#x2B07;&#xFE0F; parassimpático</small></div>
+      <div class="node teal">&#x2B06;&#xFE0F; Simpático ativado<small>o "acelerador" do corpo liga; o parassimpático (o "freio") desliga</small></div>
       <div class="arrow-r">&#x27A1;</div>
-      <div class="node teal">FC &#x2B06;&#xFE0F; &bull; contração &#x2B06;&#xFE0F; &bull; vasoconstrição</div>
+      <div class="node teal">Coração bate mais rápido e forte<br>+ vasos apertam</div>
       <div class="arrow-r">&#x27A1;</div>
-      <div class="node green">&#x2705; Pressão normaliza<small>em segundos</small></div>
+      <div class="node green">&#x2705; Pressão normaliza<small>em segundos — a tontura passa</small></div>
     </div>
   </div>
-  <p class="sub in4" style="margin-top:24px;max-width:820px"><b style="color:var(--gold)">Limitação:</b> em 1 a 2 dias os barorreceptores se <b>adaptam</b> ao novo nível de pressão —<br>por isso não controlam a pressão a longo prazo. Essa é a deixa para os rins.</p>
+  <div class="ana in4">&#x1F4A1; <b>Limitação importante:</b> em 1 a 2 dias esses sensores se <b>acostumam</b> com o novo nível de pressão — como um perfume que você passa e depois de um tempo não sente mais. Por isso não controlam a pressão a longo prazo: essa é a deixa para os rins.</div>
 </div>
 
 <!-- ========== 7. QUIMIORRECEPTORES / ISQUEMIA ========== -->
@@ -276,11 +292,11 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <p class="kicker in1">Controle rápido — emergências</p>
   <h2 class="in2">Os alarmes de emergência</h2>
   <div class="cards in3">
-    <div class="card gold"><div class="ic">&#x1F6A8;</div><h3>Quimiorreceptores</h3><p>Corpos carotídeos e aórticos detectam queda de O&#8322; e excesso de CO&#8322;. Entram em ação quando a pressão cai abaixo de &#8776; 80 mmHg.</p></div>
-    <div class="card red"><div class="ic">&#x2757;</div><h3>Resposta isquêmica do SNC</h3><p>Quando a pressão despenca abaixo de &#8776; 60 mmHg e o próprio cérebro sofre com a falta de fluxo: descarga simpática máxima — o último recurso do organismo.</p></div>
-    <div class="card teal"><div class="ic">&#x1F504;</div><h3>Outros reflexos</h3><p>Receptores cardiopulmonares de baixa pressão nos átrios e artérias pulmonares ajudam a ajustar a volemia.</p></div>
+    <div class="card gold"><div class="ic">&#x1F6A8;</div><h3>Quimiorreceptores</h3><p><b>Sensores químicos</b> ("quimio" = química): medem o oxigênio do sangue. Quando a pressão cai abaixo de &#8776; 80 mmHg e falta oxigênio, disparam o alerta.</p></div>
+    <div class="card red"><div class="ic">&#x2757;</div><h3>Resposta isquêmica do SNC</h3><p>"Isquemia" = falta de sangue; SNC = o cérebro. Quando a pressão despenca abaixo de &#8776; 60 mmHg e o <b>próprio cérebro</b> fica sem sangue, ele dispara a reação máxima — o último recurso do organismo.</p></div>
+    <div class="card teal"><div class="ic">&#x1F504;</div><h3>Outros reflexos</h3><p>Sensores de baixa pressão no coração e nos vasos do pulmão ajudam a ajustar a quantidade de líquido no corpo (volemia).</p></div>
   </div>
-  <p class="sub in4" style="margin-top:22px;opacity:.85">Todos esses mecanismos nervosos agem em <b style="color:var(--teal)">segundos</b> — mas nenhum deles segura a pressão por semanas.</p>
+  <div class="ana in4">&#x1F4A1; <b>Em palavras simples:</b> se os barorreceptores são a boia da caixa d'água, estes aqui são o alarme de incêndio — só disparam em emergência grave. Agem em <b>segundos</b>, mas nenhum deles segura a pressão por semanas.</div>
 </div>
 
 <!-- ========== 8. HORMONAL ========== -->
@@ -288,19 +304,21 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <p class="kicker gold in1">Controle intermediário — minutos a horas</p>
   <h2 class="in2">A camada hormonal</h2>
   <div class="cards in3">
-    <div class="card gold"><div class="ic">&#x26A1;</div><h3>Adrenalina e noradrenalina</h3><p>Medula adrenal: reforçam o simpático — FC e vasoconstrição aumentam</p></div>
-    <div class="card gold"><div class="ic">&#x1F4A7;</div><h3>ADH (vasopressina)</h3><p>Hipófise posterior: retém água nos rins e, em altas doses, contrai vasos</p></div>
-    <div class="card teal"><div class="ic">&#x1FAC0;</div><h3>Peptídeo natriurético atrial</h3><p>O contrarregulador: átrios distendidos liberam PNA, que elimina sódio e água — a pressão desce</p></div>
-    <div class="card"><div class="ic">&#x1F9EB;</div><h3>Endotélio</h3><p>Óxido nítrico (NO) dilata; endotelina contrai — o equilíbrio fino, vaso a vaso</p></div>
+    <div class="card gold"><div class="ic">&#x26A1;</div><h3>Adrenalina e noradrenalina</h3><p>Os <b>hormônios do susto</b>, liberados pela glândula adrenal (em cima do rim): aceleram o coração e apertam os vasos</p></div>
+    <div class="card gold"><div class="ic">&#x1F4A7;</div><h3>ADH (vasopressina)</h3><p>O <b>hormônio que segura água</b>: faz o rim urinar menos e, em doses altas, também aperta os vasos</p></div>
+    <div class="card teal"><div class="ic">&#x1FAC0;</div><h3>Peptídeo natriurético atrial (PNA)</h3><p>O <b>hormônio do alívio</b>: quando o coração estica por excesso de líquido, ele manda o rim jogar fora sal e água — a pressão desce</p></div>
+    <div class="card"><div class="ic">&#x1F9EB;</div><h3>Endotélio (forro interno do vaso)</h3><p>Produz óxido nítrico, que <b>relaxa</b> o vaso, e endotelina, que <b>aperta</b> — o ajuste fino, vaso a vaso</p></div>
   </div>
+  <div class="ana in3">&#x1F4A1; <b>Em palavras simples:</b> hormônios são <b>recados químicos</b> que viajam pelo sangue até os órgãos. Enquanto os nervos agem em segundos, esses recados ajustam a pressão em minutos a horas.</div>
 </div>
 
 <!-- ========== 9. RIM — LONGO PRAZO ========== -->
 <div class="slide">
   <p class="kicker gold in1">Controle a longo prazo — dias a anos</p>
   <h2 class="in2">O verdadeiro regulador: o rim</h2>
-  <div class="frame in3" style="margin-top:18px"><img loading="lazy" decoding="async" src="img/kidneys.webp" alt="Rins humanos" style="max-height:44vh"></div>
-  <p class="sub in4" style="margin-top:20px;max-width:900px"><b style="color:var(--gold)">Natriurese de pressão</b> (Guyton, cap. 19): quando a pressão sobe, o rim elimina mais sódio e água — a volemia cai e a pressão volta ao ponto de equilíbrio.<br>É o único mecanismo com <b style="color:var(--teal)">ganho infinito</b>: não se adapta, não desiste — define o nível da pressão ao longo da vida.</p>
+  <div class="frame in3" style="margin-top:14px"><img loading="lazy" decoding="async" src="img/kidneys.webp" alt="Rins humanos" style="max-height:36vh"></div>
+  <p class="sub in4" style="margin-top:16px;max-width:920px"><b style="color:var(--gold)">Natriurese de pressão</b> <span class="gl">("natri" = sódio + "urese" = urinar)</span>: quando a pressão sobe,<br>o rim joga fora mais sal e água — o volume de líquido cai e a pressão volta ao normal <span style="opacity:.7">(Guyton, cap. 19)</span>.</p>
+  <div class="ana in4">&#x1F4A1; <b>Em palavras simples:</b> o rim é a <b>caixa d'água com boia</b> da casa — controla o nível de água do sistema inteiro. E é o único mecanismo que <b>nunca se acostuma e nunca desiste</b> (ganho infinito): é ele quem define a pressão ao longo da vida.</div>
 </div>
 
 <!-- ========== 10. SRAA ========== -->
@@ -309,25 +327,26 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <h2 class="in2">Sistema Renina-Angiotensina-Aldosterona</h2>
   <div class="flow in3">
     <div class="flow-row">
-      <div class="node red">&#x2B07;&#xFE0F; Pressão / &#x2B07;&#xFE0F; sódio chegando ao rim</div>
+      <div class="node red">&#x2B07;&#xFE0F; Pressão baixa chegando ao rim</div>
       <div class="arrow-r">&#x27A1;</div>
-      <div class="node gold">Renina<small>células justaglomerulares</small></div>
+      <div class="node gold">Renina<small>o "alarme" que o rim solta no sangue</small></div>
       <div class="arrow-r">&#x27A1;</div>
-      <div class="node">Angiotensinogênio &#8594; Angiotensina I<small>produzido no fígado</small></div>
+      <div class="node">Angiotensina I<small>a renina ativa uma proteína de reserva do fígado (angiotensinogênio)</small></div>
     </div>
-    <div class="arrow-d">&#x2B07; &nbsp;ECA (pulmões)</div>
+    <div class="arrow-d">&#x2B07; &nbsp;ECA — enzima dos pulmões que completa a ativação</div>
     <div class="flow-row">
-      <div class="node red" style="font-size:clamp(13px,1.4vw,19px)">Angiotensina II</div>
+      <div class="node red" style="font-size:clamp(13px,1.4vw,19px)">Angiotensina II — o hormônio que dá as ordens</div>
     </div>
     <div class="arrow-d">&#x2B07;</div>
     <div class="flow-row">
-      <div class="node gold">Vasoconstrição potente<small>RPT sobe em minutos</small></div>
-      <div class="node gold">Aldosterona<small>córtex adrenal: retém Na&#8314; e água</small></div>
-      <div class="node gold">Sede + ADH<small>volemia sobe</small></div>
+      <div class="node gold">Aperta os vasos com força<small>a resistência sobe em minutos</small></div>
+      <div class="node gold">Libera aldosterona<small>hormônio que faz o rim segurar sal e água</small></div>
+      <div class="node gold">Dá sede + libera ADH<small>mais líquido no corpo</small></div>
     </div>
     <div class="arrow-d">&#x2B07;</div>
     <div class="flow-row"><div class="node green">&#x2705; Pressão restaurada e sustentada</div></div>
   </div>
+  <div class="ana in4">&#x1F4A1; <b>Em palavras simples:</b> é uma corrente de avisos — o rim sente a pressão fraca e "liga" para o fígado e os pulmões; no fim nasce a Angiotensina II, a <b>gerente da crise</b>, que dá três ordens ao mesmo tempo: apertar os canos, segurar água e beber mais água.</div>
 </div>
 
 <!-- ========== 11. LINHA DO TEMPO ========== -->
@@ -335,18 +354,18 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <p class="kicker in1">Síntese da regulação</p>
   <h2 class="in2">Três camadas, três velocidades</h2>
   <div class="cards in3">
-    <div class="card teal"><div class="ic">&#x23F1;&#xFE0F;</div><h3>Segundos</h3><p><b>Sistema nervoso</b><br>Barorreceptores, quimiorreceptores, resposta isquêmica do SNC</p></div>
-    <div class="card gold"><div class="ic">&#x23F3;</div><h3>Minutos a horas</h3><p><b>Hormônios</b><br>Catecolaminas, angiotensina II, ADH, PNA</p></div>
-    <div class="card red"><div class="ic">&#x1F4C5;</div><h3>Dias a anos</h3><p><b>Rim e volemia</b><br>Natriurese de pressão + SRAA + aldosterona</p></div>
+    <div class="card teal"><div class="ic">&#x23F1;&#xFE0F;</div><h3>Segundos</h3><p><b>Sistema nervoso</b><br>Os sensores de pressão e os alarmes de emergência — resposta imediata</p></div>
+    <div class="card gold"><div class="ic">&#x23F3;</div><h3>Minutos a horas</h3><p><b>Hormônios</b><br>Os recados químicos no sangue: adrenalina, angiotensina II, ADH, PNA</p></div>
+    <div class="card red"><div class="ic">&#x1F4C5;</div><h3>Dias a anos</h3><p><b>Rim e volume de líquido</b><br>A caixa d'água com boia: elimina ou segura sal e água — a palavra final</p></div>
   </div>
-  <p class="sub in4" style="margin-top:24px;max-width:860px">Quando essas três camadas trabalham em harmonia, a pressão fica estável.<br><b style="color:var(--red)">Quando a camada renal se desregula, nasce a hipertensão.</b></p>
+  <div class="ana in4">&#x1F4A1; <b>Em palavras simples:</b> é como um socorro em três etapas — o <b>socorrista</b> chega em segundos (nervos), o <b>hospital</b> resolve em horas (hormônios) e a <b>reconstrução</b> leva anos (rim). Quando a camada do rim se desregula, <b style="color:var(--red)">nasce a hipertensão</b>.</div>
 </div>
 
 <!-- ========== 12. O QUE É HIPERTENSÃO ========== -->
 <div class="slide">
   <p class="kicker red in1">Parte 2 — quando a regulação falha</p>
   <h2 class="in2">O que é hipertensão arterial?</h2>
-  <p class="sub in2" style="margin-top:10px;max-width:860px">Doença crônica em que a pressão permanece elevada de forma <b style="color:var(--red)">sustentada</b> —<br>o sistema passa a defender um ponto de equilíbrio mais alto.</p>
+  <p class="sub in2" style="margin-top:10px;max-width:900px">Doença crônica em que a pressão fica alta de forma <b style="color:var(--red)">sustentada</b> (não abaixa sozinha).<br><span class="gl">Em palavras simples:</span> é como se a boia da caixa d'água fosse regulada no nível errado —<br>o corpo passa a defender a pressão alta como se fosse o normal.</p>
   <table class="in3">
     <tr><th>Classificação</th><th>Sistólica (mmHg)</th><th>Diastólica (mmHg)</th></tr>
     <tr><td>Ótima</td><td>&lt; 120</td><td>&lt; 80</td></tr>
@@ -364,9 +383,9 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <div class="in2" style="text-align:center"><span class="big-stat">1 em 4</span></div>
   <p class="sub in2" style="margin-top:10px;font-size:clamp(18px,2.2vw,30px);font-weight:800;color:var(--txt)">adultos brasileiros é hipertenso</p>
   <div class="cards in3">
-    <div class="card red"><div class="ic">&#x1F910;</div><h3>Doença silenciosa</h3><p>Na maioria dos casos não há sintomas — muitos descobrem só na complicação</p></div>
+    <div class="card red"><div class="ic">&#x1F910;</div><h3>Doença silenciosa</h3><p>Na maioria dos casos não dá sintoma — como um <b>cupim na viga</b>: vai corroendo sem fazer barulho, e muitos só descobrem na complicação</p></div>
     <div class="card red"><div class="ic">&#x1F4C8;</div><h3>Aumenta com a idade</h3><p>Mais da metade das pessoas acima de 60 anos convive com hipertensão</p></div>
-    <div class="card red"><div class="ic">&#x1F30E;</div><h3>Principal fator de risco</h3><p>Para AVC, infarto e doença renal crônica no mundo</p></div>
+    <div class="card red"><div class="ic">&#x1F30E;</div><h3>Principal fator de risco</h3><p>Para AVC (derrame), infarto e doença renal crônica no mundo inteiro</p></div>
   </div>
 </div>
 
@@ -374,14 +393,14 @@ tr.hl td{background:rgba(255,71,87,.12)}
 <div class="slide">
   <p class="kicker red in1">Classificação por causa</p>
   <h2 class="in2">Hipertensão primária (essencial)</h2>
-  <p class="sub in2" style="margin-top:10px"><span class="pill" style="border-color:rgba(255,71,87,.5);color:var(--red);background:rgba(255,71,87,.1)">90 a 95% dos casos</span>&nbsp;&nbsp;Sem uma causa única — soma de fatores ao longo dos anos:</p>
+  <p class="sub in2" style="margin-top:10px;max-width:900px"><span class="pill" style="border-color:rgba(255,71,87,.5);color:var(--red);background:rgba(255,71,87,.1)">90 a 95% dos casos</span>&nbsp;&nbsp;Não tem uma causa única —<br>é a soma de hábitos e fatores agindo juntos, por anos:</p>
   <div class="cards in3">
-    <div class="card"><div class="ic">&#x1F9C2;</div><h3>Excesso de sal</h3><p>Mais sódio = mais volume retido</p></div>
-    <div class="card"><div class="ic">&#x2696;&#xFE0F;</div><h3>Obesidade</h3><p>Hiperativa o simpático e o SRAA</p></div>
-    <div class="card"><div class="ic">&#x1F6CB;&#xFE0F;</div><h3>Sedentarismo</h3><p>Vasos menos complacentes</p></div>
-    <div class="card"><div class="ic">&#x1F9EC;</div><h3>Genética + idade</h3><p>História familiar e envelhecimento arterial</p></div>
-    <div class="card"><div class="ic">&#x1F37A;</div><h3>Álcool e tabaco</h3><p>Lesão endotelial e ativação simpática</p></div>
-    <div class="card"><div class="ic">&#x1F630;</div><h3>Estresse crônico</h3><p>Descarga simpática repetida</p></div>
+    <div class="card"><div class="ic">&#x1F9C2;</div><h3>Excesso de sal</h3><p>Mais sal = o corpo segura mais água = mais líquido nos canos</p></div>
+    <div class="card"><div class="ic">&#x2696;&#xFE0F;</div><h3>Obesidade</h3><p>Deixa o "acelerador" (simpático) e o sistema do rim (SRAA) ligados demais</p></div>
+    <div class="card"><div class="ic">&#x1F6CB;&#xFE0F;</div><h3>Sedentarismo</h3><p>Vasos mais duros, que esticam menos</p></div>
+    <div class="card"><div class="ic">&#x1F9EC;</div><h3>Genética + idade</h3><p>História na família e envelhecimento das artérias</p></div>
+    <div class="card"><div class="ic">&#x1F37A;</div><h3>Álcool e tabaco</h3><p>Machucam o forro do vaso (endotélio) e aceleram o corpo</p></div>
+    <div class="card"><div class="ic">&#x1F630;</div><h3>Estresse crônico</h3><p>Descarga de adrenalina repetida, todo dia</p></div>
   </div>
 </div>
 
@@ -390,12 +409,12 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <p class="kicker red in1">Fisiopatologia</p>
   <h2 class="in2">O que se altera na hipertensão?</h2>
   <div class="cards in3">
-    <div class="card red"><div class="ic">&#x1F9E0;</div><h3>Barorreceptores recalibrados</h3><p>Adaptam-se ao nível alto e passam a defendê-lo como "normal"</p></div>
-    <div class="card red"><div class="ic">&#x1F525;</div><h3>Simpático hiperativo</h3><p>Vasoconstrição e FC elevadas de forma crônica</p></div>
-    <div class="card red"><div class="ic">&#x1F9EA;</div><h3>SRAA hiperativo</h3><p>Angiotensina II e aldosterona em excesso: volume e resistência sobem</p></div>
-    <div class="card red"><div class="ic">&#x1FA78;</div><h3>Disfunção endotelial</h3><p>Menos óxido nítrico, mais endotelina — o vaso perde a capacidade de relaxar</p></div>
-    <div class="card red"><div class="ic">&#x1F4C9;</div><h3>Curva renal deslocada</h3><p>O rim passa a exigir pressão maior para excretar o mesmo sódio (Guyton, cap. 19)</p></div>
-    <div class="card red"><div class="ic">&#x1F9F1;</div><h3>Remodelamento vascular</h3><p>Parede espessa, lúmen estreito — a RPT sobe em definitivo</p></div>
+    <div class="card red"><div class="ic">&#x1F9E0;</div><h3>Sensores recalibrados</h3><p>Os barorreceptores se acostumam com o nível alto e passam a defendê-lo como "normal"</p></div>
+    <div class="card red"><div class="ic">&#x1F525;</div><h3>Acelerador preso</h3><p>O simpático fica hiperativo: vasos apertados e coração acelerado o tempo todo</p></div>
+    <div class="card red"><div class="ic">&#x1F9EA;</div><h3>SRAA hiperativo</h3><p>Angiotensina II e aldosterona em excesso: o corpo segura líquido e aperta os canos sem precisar</p></div>
+    <div class="card red"><div class="ic">&#x1FA78;</div><h3>Forro do vaso doente</h3><p>Disfunção endotelial: falta a substância que relaxa (óxido nítrico) e sobra a que aperta (endotelina)</p></div>
+    <div class="card red"><div class="ic">&#x1F4C9;</div><h3>Boia do rim desregulada</h3><p>O rim só consegue eliminar o sal de sempre se a pressão estiver mais alta (Guyton, cap. 19)</p></div>
+    <div class="card red"><div class="ic">&#x1F9F1;</div><h3>Cano reformado errado</h3><p>Remodelamento vascular: a parede engrossa e o espaço interno (lúmen) estreita — de forma permanente</p></div>
   </div>
 </div>
 
@@ -403,22 +422,23 @@ tr.hl td{background:rgba(255,71,87,.12)}
 <div class="slide">
   <p class="kicker red in1">Fisiopatologia</p>
   <h2 class="in2">A artéria antes e depois</h2>
-  <div class="frame in3" style="margin-top:18px"><img loading="lazy" decoding="async" src="img/artery-compare.webp" alt="Artéria normal e artéria remodelada" style="max-height:50vh"></div>
-  <p class="sub in4" style="margin-top:20px;max-width:880px">Pressão alta lesa o endotélio &#8594; a parede engrossa &#8594; o lúmen estreita &#8594; a resistência sobe &#8594; a pressão sobe ainda mais.<br><b style="color:var(--red)">Um círculo vicioso que se retroalimenta.</b></p>
+  <div class="frame in3" style="margin-top:14px"><img loading="lazy" decoding="async" src="img/artery-compare.webp" alt="Artéria normal e artéria remodelada" style="max-height:42vh"></div>
+  <p class="sub in4" style="margin-top:16px;max-width:920px">A pressão alta machuca o forro do vaso &#8594; a parede engrossa &#8594; o espaço por dentro estreita &#8594; fica mais difícil o sangue passar &#8594; a pressão sobe ainda mais. <b style="color:var(--red)">Um círculo vicioso.</b></p>
+  <div class="ana in4">&#x1F4A1; <b>Em palavras simples:</b> é o cano velho com ferrugem — vai engrossando por dentro, e a água precisa de cada vez mais pressão para passar.</div>
 </div>
 
 <!-- ========== 17. SECUNDÁRIA ========== -->
 <div class="slide">
   <p class="kicker red in1">Classificação por causa</p>
   <h2 class="in2">Hipertensão secundária</h2>
-  <p class="sub in2" style="margin-top:10px"><span class="pill" style="border-color:rgba(245,166,35,.5);color:var(--gold);background:rgba(245,166,35,.1)">5 a 10% dos casos</span>&nbsp;&nbsp;Há uma causa identificável — e muitas vezes tratável:</p>
+  <p class="sub in2" style="margin-top:10px;max-width:900px"><span class="pill" style="border-color:rgba(245,166,35,.5);color:var(--gold);background:rgba(245,166,35,.1)">5 a 10% dos casos</span>&nbsp;&nbsp;Aqui a pressão alta é <b>sintoma de outro problema</b> —<br>tratou a causa, a pressão melhora:</p>
   <div class="cards in3">
-    <div class="card gold"><div class="ic">&#x1FAC1;</div><h3>Doenças renais</h3><p>Doença renal crônica e estenose da artéria renal (hipertensão renovascular)</p></div>
-    <div class="card gold"><div class="ic">&#x1F9EA;</div><h3>Causas endócrinas</h3><p>Hiperaldosteronismo primário, feocromocitoma, Cushing, tireoide</p></div>
-    <div class="card gold"><div class="ic">&#x1F634;</div><h3>Apneia do sono</h3><p>Hipóxia repetida ativa o simpático toda noite</p></div>
-    <div class="card gold"><div class="ic">&#x1F48A;</div><h3>Fármacos</h3><p>Anticoncepcionais, corticoides, anti-inflamatórios, descongestionantes</p></div>
+    <div class="card gold"><div class="ic">&#x1FAC1;</div><h3>Doenças renais</h3><p>Rim doente ou estenose (entupimento parcial) da artéria que leva sangue ao rim</p></div>
+    <div class="card gold"><div class="ic">&#x1F9EA;</div><h3>Causas hormonais</h3><p>Excesso de aldosterona (hormônio que segura sal), feocromocitoma (tumor que despeja adrenalina), excesso de cortisol (Cushing), tireoide</p></div>
+    <div class="card gold"><div class="ic">&#x1F634;</div><h3>Apneia do sono</h3><p>A pessoa para de respirar dormindo: a falta de oxigênio liga o "acelerador" toda noite</p></div>
+    <div class="card gold"><div class="ic">&#x1F48A;</div><h3>Remédios</h3><p>Anticoncepcionais, corticoides, anti-inflamatórios e descongestionantes podem subir a pressão</p></div>
   </div>
-  <p class="sub in4" style="margin-top:18px;opacity:.85">Suspeitar quando: início antes dos 30 anos, pressão resistente a tratamento ou piora súbita.</p>
+  <p class="sub in4" style="margin-top:16px;opacity:.9">Quando desconfiar: pressão alta antes dos 30 anos, que não melhora com remédio ou que piora de repente.</p>
 </div>
 
 <!-- ========== 18. ÓRGÃOS-ALVO ========== -->
@@ -427,10 +447,10 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <h2 class="in2">Lesões em órgãos-alvo</h2>
   <div class="frame in3" style="margin-top:16px"><img loading="lazy" decoding="async" src="img/organ-damage.webp" alt="Órgãos afetados pela hipertensão" style="max-height:42vh"></div>
   <div class="cards in4" style="margin-top:18px">
-    <div class="card red" style="width:clamp(170px,17vw,230px)"><h3>&#x2764;&#xFE0F; Coração</h3><p>Hipertrofia do VE, infarto, insuficiência cardíaca</p></div>
-    <div class="card red" style="width:clamp(170px,17vw,230px)"><h3>&#x1F9E0; Cérebro</h3><p>AVC isquêmico e hemorrágico</p></div>
-    <div class="card red" style="width:clamp(170px,17vw,230px)"><h3>&#x1FAC1; Rins</h3><p>Nefroesclerose &#8594; doença renal crônica</p></div>
-    <div class="card red" style="width:clamp(170px,17vw,230px)"><h3>&#x1F441;&#xFE0F; Retina</h3><p>Retinopatia hipertensiva</p></div>
+    <div class="card red" style="width:clamp(185px,19vw,260px)"><h3>&#x2764;&#xFE0F; Coração</h3><p>O músculo cresce de tanto forçar (hipertrofia), até falhar: infarto e insuficiência cardíaca</p></div>
+    <div class="card red" style="width:clamp(185px,19vw,260px)"><h3>&#x1F9E0; Cérebro</h3><p>AVC (derrame) — por entupimento ou rompimento de um vaso</p></div>
+    <div class="card red" style="width:clamp(185px,19vw,260px)"><h3>&#x1FAC1; Rins</h3><p>Os filtros endurecem (nefroesclerose) e param de funcionar: doença renal crônica</p></div>
+    <div class="card red" style="width:clamp(185px,19vw,260px)"><h3>&#x1F441;&#xFE0F; Olhos</h3><p>Lesão nos vasinhos do fundo do olho (retinopatia) — pode custar a visão</p></div>
   </div>
 </div>
 
@@ -442,7 +462,7 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <div class="cards in4" style="margin-top:16px">
     <div class="card green" style="width:clamp(180px,18vw,250px)"><h3>&#x1F9C2; Menos sódio</h3><p>&lt; 2 g de sódio/dia (&#8776; 5 g de sal) — cuidado com ultraprocessados</p></div>
     <div class="card green" style="width:clamp(180px,18vw,250px)"><h3>&#x1F34C; Mais potássio</h3><p>Frutas, verduras e feijões ajudam a excretar sódio</p></div>
-    <div class="card green" style="width:clamp(180px,18vw,250px)"><h3>&#x1F957; Padrão DASH</h3><p>Pode reduzir 8 a 14 mmHg na sistólica</p></div>
+    <div class="card green" style="width:clamp(180px,18vw,250px)"><h3>&#x1F957; Padrão DASH</h3><p>Dieta criada para baixar pressão: frutas, verduras, grãos e pouco sal — reduz 8 a 14 mmHg</p></div>
     <div class="card green" style="width:clamp(180px,18vw,250px)"><h3>&#x2696;&#xFE0F; Peso + movimento</h3><p>&#8776; 1 mmHg a menos por kg perdido; exercício aeróbico reduz 5 a 8 mmHg</p></div>
   </div>
 </div>
@@ -453,15 +473,15 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <h2 class="in2">Cada fármaco ataca um mecanismo que estudamos</h2>
   <div class="flow in3">
     <div class="flow-row">
-      <div class="node teal">Diuréticos<small>&#x2B07;&#xFE0F; volemia — agem no rim (tiazídicos)</small></div>
-      <div class="node teal">IECA / BRA<small>bloqueiam a ECA ou o receptor da angiotensina II (enalapril / losartana)</small></div>
+      <div class="node teal">Diuréticos<small>fazem urinar mais = menos líquido nos canos (ex.: hidroclorotiazida)</small></div>
+      <div class="node teal">IECA / BRA<small>cortam a ordem da angiotensina II — o vaso para de apertar (ex.: enalapril / losartana)</small></div>
     </div>
     <div class="flow-row" style="margin-top:14px">
-      <div class="node teal">Bloqueadores de canal de cálcio<small>&#x2B07;&#xFE0F; RPT — relaxam o músculo liso vascular (anlodipino)</small></div>
-      <div class="node teal">Betabloqueadores<small>&#x2B07;&#xFE0F; DC — reduzem FC e contratilidade (atenolol)</small></div>
+      <div class="node teal">Bloqueadores de canal de cálcio<small>relaxam a musculatura do vaso = cano mais largo (ex.: anlodipino)</small></div>
+      <div class="node teal">Betabloqueadores<small>tiram o pé do acelerador: coração bate mais devagar e com menos força (ex.: atenolol)</small></div>
     </div>
   </div>
-  <p class="sub in4" style="margin-top:24px;max-width:860px">A base do tratamento continua sendo a <b style="color:var(--green)">mudança de estilo de vida</b> —<br>alimentação, exercício, peso, sono e manejo do estresse. O fármaco complementa, não substitui.</p>
+  <div class="ana in4">&#x1F4A1; <b>Em palavras simples:</b> cada remédio fecha uma das portas que a doença usa — menos água no sistema, canos mais largos ou bomba mais calma. Mas a base continua sendo a <b>mudança de estilo de vida</b>: alimentação, exercício, peso, sono e estresse. O remédio complementa, não substitui.</div>
 </div>
 
 <!-- ========== 21. CASO CLÍNICO ========== -->
@@ -469,8 +489,8 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <p class="kicker gold in1">Dramatização — caso clínico</p>
   <h2 class="in2">Dona Maria, 58 anos</h2>
   <div class="cards in3">
-    <div class="card"><div class="ic">&#x1FA7A;</div><h3>Cena 1 — A consulta</h3><p>Consulta de rotina, sem queixas. Aferição: <b style="color:var(--red)">162 &times; 104 mmHg</b>, confirmada em duas medidas. IMC 31. "Mas eu não sinto nada, doutora!"</p></div>
-    <div class="card"><div class="ic">&#x1F37D;&#xFE0F;</div><h3>Cena 2 — A anamnese alimentar</h3><p>Café com pão, mortadela e queijo; almoço com caldo pronto; sardinha enlatada; refrigerante. Sal estimado: <b style="color:var(--red)">&gt; 12 g/dia</b>. Caminhada: nenhuma.</p></div>
+    <div class="card"><div class="ic">&#x1FA7A;</div><h3>Cena 1 — A consulta</h3><p>Consulta de rotina, sem queixas. Medida da pressão: <b style="color:var(--red)">162 &times; 104 mmHg</b>, confirmada duas vezes. IMC 31 (obesidade). "Mas eu não sinto nada, doutora!"</p></div>
+    <div class="card"><div class="ic">&#x1F37D;&#xFE0F;</div><h3>Cena 2 — A entrevista alimentar</h3><p>Café com pão, mortadela e queijo; almoço com caldo pronto; sardinha enlatada; refrigerante. Sal estimado: <b style="color:var(--red)">&gt; 12 g/dia</b> (o dobro do limite). Caminhada: nenhuma.</p></div>
     <div class="card"><div class="ic">&#x1F91D;</div><h3>Cena 3 — O plano</h3><p>Encaminhamento médico + plano DASH realista, troca dos temperos prontos por ervas, caminhada 30 min 5&times;/semana, meta de 5% do peso em 6 meses.</p></div>
   </div>
   <p class="sub in4" style="margin-top:22px;max-width:800px">Em cena: cada integrante assume um papel — paciente, nutricionista e narrador<br>explicando a fisiologia por trás de cada decisão.</p>
@@ -481,10 +501,10 @@ tr.hl td{background:rgba(255,71,87,.12)}
   <p class="kicker in1">Conclusão</p>
   <h2 class="in2">O que levamos de hoje</h2>
   <div class="cards in3">
-    <div class="card teal"><div class="ic">&#x2696;&#xFE0F;</div><h3>PA = DC &times; RPT</h3><p>Toda a regulação — e toda a doença — passa por esses dois fatores</p></div>
-    <div class="card teal"><div class="ic">&#x23F1;&#xFE0F;</div><h3>Três camadas de controle</h3><p>Nervosa (segundos), hormonal (horas) e renal (anos) — o rim dá a palavra final</p></div>
-    <div class="card red"><div class="ic">&#x1F4C8;</div><h3>Hipertensão é regulação quebrada</h3><p>O sistema inteiro passa a defender uma pressão mais alta — e lesa os órgãos em silêncio</p></div>
-    <div class="card green"><div class="ic">&#x1F957;</div><h3>A Nutrição age na causa</h3><p>Sódio, potássio, peso e padrão alimentar mexem exatamente nos mecanismos da doença</p></div>
+    <div class="card teal"><div class="ic">&#x2696;&#xFE0F;</div><h3>PA = DC &times; RPT</h3><p>Pressão = força da bomba &times; aperto dos canos. Toda a regulação — e toda a doença — passa por esses dois fatores</p></div>
+    <div class="card teal"><div class="ic">&#x23F1;&#xFE0F;</div><h3>Três camadas de controle</h3><p>Nervosa (segundos), hormonal (horas) e renal (anos) — o rim, a caixa d'água do corpo, dá a palavra final</p></div>
+    <div class="card red"><div class="ic">&#x1F4C8;</div><h3>Hipertensão é regulação quebrada</h3><p>A boia desregulada: o corpo passa a defender uma pressão mais alta — e lesa os órgãos em silêncio</p></div>
+    <div class="card green"><div class="ic">&#x1F957;</div><h3>A Nutrição age na causa</h3><p>Sal, potássio, peso e padrão alimentar mexem exatamente nos mecanismos da doença</p></div>
   </div>
 </div>
 
